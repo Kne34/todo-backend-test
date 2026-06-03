@@ -52,7 +52,7 @@ router.delete("/:id", async (req, res) => {
     const [check] = await pool.query(`SELECT * FROM todos WHERE id = ?`, [id]);
     if (check.length === 0) return res.status(404).json({ error: "Not Found" });
     await pool.query(`DELETE FROM todos WHERE id = ?`, [id]);
-    res.status(204).send();
+    res.status(204).json({ message: "Delete berhasil" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
